@@ -10,7 +10,6 @@ global proc AAMovePivotToBase(int $method){
 	float $objCenter[];
 	float $objBB[];
 
-	print "wtf";
 	if ($method == 1){
 	// Find center and bounding box info
 		
