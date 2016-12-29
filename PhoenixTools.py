@@ -145,7 +145,7 @@ def phoenixTools():
 	cmds.setParent( '..' )
 
 	##############
-	##  Pivots 	##
+	##  Pivots  ##
 	##############
 
 	cmds.frameLayout( label='Pivot Manipulation', borderStyle='out', cll=True, width=400)
@@ -169,7 +169,7 @@ def phoenixTools():
 	cmds.setParent( '..' )
 
 	##############
-	##  Manip 	##
+	##   Manip  ##
 	##############
 
 	cmds.frameLayout( label='Manipulator Orientation', borderStyle='out', cll=True, width=400)
@@ -194,7 +194,7 @@ def phoenixTools():
 
 
 	##############
-	##   Holes	##
+	##   Holes  ##
 	##############
 
 	cmds.frameLayout( label='Hole Creation', borderStyle='out', cll=True, width=400)
