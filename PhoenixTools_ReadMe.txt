@@ -197,8 +197,7 @@ B.  Shelf Button Creation (Option 2)
 	Unwrap by Smoothing Angle - Creates UV shells for the selected object
 	based upon the object's edge normals
 
-	Unwrap by Selected Seams", command="unwrapBySeams()", ann="""Creates UV
-	shells for the object using the selected edges as seams.""")
+	Unwrap by Selected Seams - Creates UV shells for the object using the selected edges as seams
 
 	#################
 	## UV Editing  ##
