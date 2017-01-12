@@ -40,7 +40,7 @@ def keyUndulation():
 
  
 
-# Making Joints
+# Making Keys
 def setKeys():
 	# Defining Variables
 	yChange = cmds.floatSliderGrp("yChange", q=True, v=True)
