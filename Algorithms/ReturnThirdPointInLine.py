@@ -2,6 +2,13 @@
 # Aaron Aikman
 # Returns a third point (v2) in a line based upon two v2's
 
+import os
+
+
+def addToClipBoard(text):
+    command = 'echo ' + text.strip() + '| clip'
+    os.system(command)
+
 
 def plotPoint(x0, y0, x1, y1, x):
     y = ((((y1 - y0) / (x1 - x0)) * (x - x0)) + y0)
@@ -22,3 +29,5 @@ while True:
         break
     tResult = plotPoint(x0, y0, x1, y1, x)
     print "       y= %s" % (tResult)
+    print "\n %s has been copied to the clipboard \n" % (tResult)
+    addToClipBoard(str(tResult))
