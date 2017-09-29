@@ -149,3 +149,13 @@ def find_triangular_numbers():
         yield res
         b +=1
 
+
+def find_collatz_sequence(n):
+    seq = [n]
+    while n != 1:
+        if n % 2 == 0:
+            n /= 2
+        else:
+            n = n * 3 + 1
+        seq.append(n)
+    return seq
