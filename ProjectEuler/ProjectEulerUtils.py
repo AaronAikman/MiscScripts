@@ -38,6 +38,8 @@ def find_prime_factors(ceiling):
         n += 1
     return fac
 
+'''
+Too Slow
 def find_factors(ceiling):
     n = 1
     fac = []
@@ -49,6 +51,17 @@ def find_factors(ceiling):
             fac.append(n)
         n += 1
     return fac
+'''
+
+
+def find_factors(num):
+    divisors = [1, num]
+    for eachNum in range(2, int(num ** .5) + 1):
+        if num % eachNum == 0:
+            divisors += [eachNum]
+            if num / eachNum != eachNum:
+                divisors += [(num / eachNum)]
+    return divisors
 
 
 def is_prime(number):
@@ -115,6 +128,8 @@ def find_smallest_multiple(ceiling):
     return i
 
 
+'''
+Too Slow
 def find_triangular_numbers():
     i = 1
     while True:
@@ -123,6 +138,14 @@ def find_triangular_numbers():
             a += j
         yield a
         i += 1
+'''
 
-
+def find_triangular_numbers():
+    b = 1
+    res = 0
+    while True:
+        res += b
+        #        print (b, res)
+        yield res
+        b +=1
 

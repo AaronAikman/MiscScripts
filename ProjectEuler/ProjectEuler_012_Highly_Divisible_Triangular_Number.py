@@ -16,9 +16,10 @@ Let us list the factors of the first seven triangle numbers:
 We can see that 28 is the first triangle number to have over five divisors.
 
 What is the value of the first triangle number to have over five hundred divisors?
+
 '''
 
-from ProjectEulerUtils import find_factors, find_prime_factors, find_triangular_numbers
+from ProjectEulerUtils import find_factors, find_triangular_numbers
 
 ftn = find_triangular_numbers()
 ftn.send(None)
