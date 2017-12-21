@@ -1,0 +1,46 @@
+// Aaron Aikman
+// Script moves the pivots of selected objects to the center bottom of the group
+
+
+global proc AAMovePivotToBase(int $method){
+
+	$mySelection = `ls -sl -type "transform"`;
+	string $obj;
+	
+	float $objCenter[];
+	float $objBB[];
+
+	if ($method == 1){
+	// Find center and bounding box info
+		
+	// Temporarily group objects
+		group -n "pivotTempGrp" -w $mySelection;
+
+	// Find center and bounding box info
+		$objCenter = `objectCenter pivotTempGrp`;
+		$objBB = `xform -q -ws -bb pivotTempGrp`;
+	}
+	
+	// Find average of bounding box y coordinates
+	float $yAverage = (($objBB[1] + $objBB[4])/2);
+
+	for ($obj in $mySelection) {
+
+		if ($method == 0){
+			$objCenter = `objectCenter $obj`;
+			$objBB = `xform -q -ws -bb $obj`;
+		}
+
+
+		xform -ws -piv $objCenter[0] $objBB[1] $objCenter[2] $obj;
+	
+	}
+
+
+	if ($method == 1){
+		// Delete temporary group
+		ungroup pivotTempGrp;
+	}
+}
+
+AAMovePivotToBase(0);

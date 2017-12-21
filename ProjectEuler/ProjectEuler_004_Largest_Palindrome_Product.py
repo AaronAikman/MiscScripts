@@ -1,3 +1,0 @@
-from ProjectEulerUtils import find_palindromic_number
-
-print find_palindromic_number(3)
