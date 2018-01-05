@@ -83,3 +83,33 @@ for i in range(1001):
     sum += getNumberInWords(i)
 
 print sum
+
+
+'''
+MORE EFFICIENT SOLUTION BY TheBMachine
+
+# Number to text map
+number_words = ["", "one", "two", "three", "four", "five", "six", "seven",
+"eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+"sixteen", "seventeen", "eighteen", "nineteen"]
+tens_words = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty",
+"seventy", "eighty", "ninety"]
+
+def number_to_word(n):
+    text = ""
+    if n > 99:
+        text = number_words[n // 100] + "hundred" + text
+        if n % 100 != 0:
+            text += "and"
+    if n > 9:
+        if n % 100 < 20:
+            text += number_words[n % 100]
+        elif n % 100 >= 20:
+            text += tens_words[(n % 100) // 10]
+    if n < 10 or n > 19 and (n%100 > 20):
+        text += number_words[(n % 100) % 10]
+    return text
+
+def Euler_17():
+    return sum(len(number_to_word(x)) for x in range(1000)) + len("onethousand")
+'''
