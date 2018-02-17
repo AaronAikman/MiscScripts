@@ -1,6 +1,6 @@
 
 
-def make_unique_list(lst1):
+ def make_unique_list(lst1):
     return list(set(lst1))
 
 print make_unique_list([1,1,1,1,2,2,2,3,3,3,56])
