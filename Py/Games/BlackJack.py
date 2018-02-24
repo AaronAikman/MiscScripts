@@ -33,7 +33,7 @@ class BlackJackGame(object):
 
 
     def greet(self):
-        print 'Welcome to Chez Black Jacques!\nLet the fun begin!'
+        print 'Welcome to Chez Jacques Noire!\nLet the fun begin!'
 
 
     def resetHands(self):
