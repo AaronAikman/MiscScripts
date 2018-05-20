@@ -1,4 +1,4 @@
 # MiscScripts
-A few simple scripts (mostly for Maya) created in my spare time.  
-Lacks much of my latest work which is proprietary.  
-See [Guerilla-Tactics.com](http://guerilla-tactics.com/) for more.  
+A few simple scripts, including common algorithms, Maya scripts and Project Euler problem.
+These scripts are for fun/personal development.  Most of the tools I have created are proprietary and not included here.
+See [Guerilla-Tactics.com](http://guerilla-tactics.com/) for more in.
