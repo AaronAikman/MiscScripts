@@ -159,3 +159,11 @@ def find_collatz_sequence(n):
             n = n * 3 + 1
         seq.append(n)
     return seq
+
+
+def find_factorial(n):
+    if n == 1:
+        return n
+    else:
+        res = n * find_factorial(n-1)
+        return res
