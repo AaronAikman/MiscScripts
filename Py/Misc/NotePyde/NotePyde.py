@@ -9,6 +9,7 @@ TODO add runner options (including option for base path)
 TODO add syntax highlighting
 TODO add tabs
 TODO add comparison
+TODO add an About
 '''
 
 import sys
