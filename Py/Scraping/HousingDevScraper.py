@@ -1,13 +1,35 @@
 # Checks two websites for updates
 
-import requests, bs4, datetime, smtplib
-import logging
-
+# imports
+import requests, bs4, smtplib
 import schedule
 import time
+import logging
 
 
-logging.basicConfig(filename='Tracker.log',level=logging.DEBUG)
+# Setting up Logger
+logFormatter = logging.Formatter('%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s')
+log = logging.getLogger()
+
+logPath = r'F:\Database\Satchel\Works\Scripting\Python\Scraping'
+logName = 'HousingDevScraper'
+
+fileHandler = logging.FileHandler('{0}/{1}.log'.format(logPath, logName))
+fileHandler.setFormatter(logFormatter)
+log.addHandler(fileHandler)
+
+consoleHandler = logging.StreamHandler()
+consoleHandler.setFormatter(logFormatter)
+log.addHandler(consoleHandler)
+
+log.setLevel(logging.INFO)
+
+log.info('Script Initiated')
+log.info('Logfile is {}\\{}.log\n'.format(logPath, logName))
+
+
+# vars
+passNumber = 1
 
 
 def main():
@@ -15,44 +37,49 @@ def main():
             r'https://www.huntingtonbeachca.gov/government/departments/planning/major/major-projects-view.cfm?ID=67'
             ]
     for url in urls:
-        logging.info('Checking {}'.format(url))
-        print('Checking {}'.format(url))
+        log.info('Checking {}'.format(url))
         res = requests.get(url)
         res.raise_for_status()
 
-        print('Download completed at {}'.format(datetime.datetime.now()))
-        logging.info('Download Complete')
-        soup = bs4.BeautifulSoup(res.text, "html.parser")
+        log.info('Download Complete')
 
-        print('soup complete')
-        logging.info('Soup Complete')
+        soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
         pElems = soup.select('p')
+
         for i in pElems:
             if 'Project Status' in i.getText():
                 if 'Plan Check' not in i.getText():
-                    logging.info('Change found!')
+                    log.info('Change found!')
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
-                    server.login("EMAIL", "PW")
-                    subject = "Housing Change in Huntington Beach"
-                    text = "The housing plan in huntington beach has been updated. \n{}".format(url)
+                    server.login('EMAIL', 'PW')
+                    subject = 'Housing Change in Huntington Beach'
+                    text = 'The housing plan in huntington beach has been updated. \n{}'.format(url)
                     msg = 'Subject: {}\n\n{}'.format(subject, text)
-                    server.sendmail("EMAIL", "EMAIL", msg)
+                    server.sendmail('EMAIL', 'EMAIL', msg)
+                    server.sendmail('EMAIL', 'EMAIL', msg)
                     server.quit()
                 else:
-                    logging.info('No change found.')
-                    print('No Status Change')
-
+                    log.info('No change found.\n')
 
 if __name__ == '__main__':
     main()
 
 
-schedule.every().day.at("12:00").do(main)
+# Scheduling options
+schedule.every().hour.do(main)
 
+# Alternate scheduling options
+# schedule.every(10).minutes.do(main)
+# schedule.every().day.at('10:30').do(main)
+
+# Setting perpetual schedule
 while True:
+    log.info('Running script pass number {}'.format(passNumber))
+    passNumber += 1
     schedule.run_pending()
     time.sleep(60) # wait one minute
 
-
+# Optional No hangup backgroud run with output to nohup.out
+# nohup python2.7 -u HousingDevScaper.py &
