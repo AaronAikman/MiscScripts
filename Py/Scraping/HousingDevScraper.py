@@ -1,17 +1,22 @@
+#!/usr/bin/env python3
+
 # Checks two websites for updates
 
 # imports
-import requests, bs4, smtplib
+import requests
+import bs4
+import smtplib
 import schedule
 import time
 import logging
+import os
 
 
 # Setting up Logger
 logFormatter = logging.Formatter('%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s')
 log = logging.getLogger()
 
-logPath = r'F:\Database\Satchel\Works\Scripting\Python\Scraping'
+logPath = os.getcwd()
 logName = 'HousingDevScraper'
 
 fileHandler = logging.FileHandler('{0}/{1}.log'.format(logPath, logName))
@@ -50,7 +55,7 @@ def main():
         for i in pElems:
             if 'Project Status' in i.getText():
                 if 'Plan Check' not in i.getText():
-                    log.info('Change found!')
+                    log.info('Change found. Sending email.')
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
                     server.login('EMAIL', 'PW')
